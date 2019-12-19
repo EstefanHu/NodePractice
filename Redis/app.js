@@ -95,6 +95,10 @@ function handle_database(req,type,callback) {
 	});
 }
 
+router.get('/', (req, res) => {
+	res.render('index.html');
+});
+
 app.listen(3000, () => {
     console.log('Server running on port 3000');
 });
