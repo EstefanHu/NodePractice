@@ -1,12 +1,19 @@
 const graphql = require('graphql');
 
 const {
-    graphQLOBjectType,
+    GraphQLObjectType,
     GraphQLString,
     GraphGLSchema
 } = graphql;
 
-const BookType = new graphQLOBjectType({
+// dummy data
+var books = [
+    {name:'Name of the Wind', genre: 'Fantasy', id: '1'},
+    {name:'The Final Empire', genre: 'Fantasy', id: '2'},
+    {name:'The Long Earth', genre: 'Sci-Fi', id: '3'}
+];
+
+const BookType = new GraphQLObjectType({
     name: 'Book',
 
     fields: () => ({
