@@ -21,7 +21,7 @@ const pool = mysql.createPool({
     debug    :  false
 });
 
-app.set('views', path.join(__dirname,'../','views'));
+app.set('views', path.join(__dirname,'views'));
 app.engine('html', require('ejs').renderFile);
 
 app.use(session({
