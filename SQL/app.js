@@ -65,6 +65,7 @@ app.get('/addpost2', (req, res) => {
     });
 });
 
+// GET posts
 app.get('/getposts', (req, res) => {
     let sql = 'SELECT * FROM posts';;
     let query = db.query(sql, (err, results) => {
@@ -74,6 +75,7 @@ app.get('/getposts', (req, res) => {
     });
 });
 
+// GET post
 app.get('/getpost/:id', (req, res) => {
     let sql = `SELECT * FROM posts WHERE id = ${req.params.id}`;
     let query = db.query(sql, (err, result) => {
@@ -83,6 +85,7 @@ app.get('/getpost/:id', (req, res) => {
     });
 });
 
+// UPDATE
 app.get('/updatepost/:id', (req, res) => {
     let sql = `DELETE posts WHERE id = ${req.params.id}`;
     let query = db.query(sql, (err, result) => {
@@ -92,6 +95,7 @@ app.get('/updatepost/:id', (req, res) => {
     });
 });
 
+// DELETE
 app.get('/deletepost/:id', (req, res) => {
     let sql = `UPDATE posts SET title = '${newTitle}' WHERE id = ${req.params.id}`;
     let query = db.query(sql, (err, result) => {
