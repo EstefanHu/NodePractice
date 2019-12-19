@@ -45,6 +45,26 @@ app.get('/createpoststable', (req, res) => {
     });
 });
 
+app.get('/addpost1', (req, res) => {
+    let post = {title: 'Post one', body: 'this is a post'};
+    let sql = 'INSERT INTO posts SET ?';
+    let query = db.query(sql, post, (err, result) => {
+        if(err) throw err;
+        console.log(result);
+        res.send('Post one added');
+    });
+});
+
+app.get('/addpost2', (req, res) => {
+    let post = {title: 'Post two', body: 'this is a post'};
+    let sql = 'INSERT INTO posts SET ?';
+    let query = db.query(sql, post, (err, result) => {
+        if(err) throw err;
+        console.log(result);
+        res.send('Post two added');
+    });
+});
+
 app.listen('3000', () => {
     console.log('Server started on port 3000')
 });
