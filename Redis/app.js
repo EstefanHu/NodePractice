@@ -99,6 +99,21 @@ router.get('/', (req, res) => {
 	res.render('index.html');
 });
 
+router.post('/login', (req, res) => {
+	handle_database(req, 'login', (response) => {
+		if(response === null) {
+			res.json({"error": "true", "message": "Database error occured"});
+		} else {
+			if(!response) {
+				res.json({"error": "true", "message": "Login failed. Please register"});
+			} else {
+				req.session.key = response;
+				res.json({"error": false, "message": "Login success"});
+			}
+		}
+	});
+});
+
 app.listen(3000, () => {
     console.log('Server running on port 3000');
 });
