@@ -6,7 +6,8 @@ const app = express();
 const db = mysql.createConnection({
     host: 'localhost',
     user: 'root',
-    password: ''
+    password: '',
+    database: 'nodemysql'
 });
 
 db.connect((err) => {
@@ -27,13 +28,13 @@ app.get('/createdb', (req, res) => {
 });
 
 app.get('/deletedb', (req, res) => {
-    let sql = 'DROP TABLE nodemysql';
+    let sql = 'DROP DATABASE IF EXISTS nodemysql';
     db.query(sql, (err, result) => {
         if(err) throw err;
         console.log(result);
         res.send('Database deleted!');
-    })
-})
+    });
+});
 
 app.listen('3000', () => {
     console.log('Server started on port 3000')
