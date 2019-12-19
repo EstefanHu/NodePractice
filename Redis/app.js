@@ -114,6 +114,70 @@ router.post('/login', (req, res) => {
 	});
 });
 
+router.get('/home', (req, res) => {
+	if(req.session.key) {
+		res.render('home.html', {email: req.session.key["user_name"]});
+	} else {
+		res.redirect('/');
+	}
+});
+
+router.get('/fetchStatus', (req, res) => {
+	if(req.session.key) {
+		handle_database(req, 'getStatus', (response) => {
+			if(!response) {
+				res.json({"error": false, "message" : "There is no status to show."});
+			} else {
+				res.json({"error": false, "message": response});
+			}
+		});
+	} else {
+		res.json({"error": true, "message": "Please login first."});
+	}
+});
+
+router.post('/addStatus', (req, res) => {
+	if(req.session.key) {
+		handle_database(req, 'addStatus', (response) => {
+			if(!response) {
+				res.json({"error": false, "message": "Status is added."});
+			} else {
+				res.json({"error": false, "message": "Error while adding status"});
+			}
+		});
+	} else {
+		res.json({"error": true, "message": "Please login first."});
+	}
+});
+
+router.post('/register', (req, res) => {
+	handle_database(req, 'checkEmail', (response) => {
+		if(response === null) {
+			res.json({"error": true, "message": "This email is already present"});
+		} else {
+			handle_database(req, 'register', (response) => {
+				if(response === null) {
+					res.json({"error": true, "message": "Error while adding user."});
+				} else {
+					res.json({"error": false, "message": "Registered successfully."});
+				}
+			});
+		}
+	});
+});
+
+router.get('/logout', (req, res) => {
+	if(req.session.key) {
+		req.session.destroy(() => {
+			res.redirect('/');
+		});
+	} else {
+		res.redirect('/');
+	}
+});
+
+app.use('/', router);
+
 app.listen(3000, () => {
     console.log('Server running on port 3000');
 });
