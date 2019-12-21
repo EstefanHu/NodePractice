@@ -12,7 +12,6 @@ describe('Finding records', () => {
         });
 
         newUser.save().then(() => {
-            assert(newUser.isNew === false);
             done();
         });
     });
