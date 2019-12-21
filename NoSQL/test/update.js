@@ -8,7 +8,8 @@ describe('Update records', () => {
     beforeEach(done => {
         newUser = new User({
             firstName: 'Justin',
-            lastName: 'Hu'
+            lastName: 'Hu',
+            popularity: 0
         });
 
         newUser.save().then(() => {
@@ -20,6 +21,15 @@ describe('Update records', () => {
         User.findOneAndUpdate({firstName: 'Justin'}, {firstName: 'Benti'}).then(() => {
             User.findOne({_id: newUser._id}).then(result => {
                 assert(result.firstName === 'Benti');
+                done();
+            });
+        });
+    });
+
+    it('Increment user popularity by one', done => {
+        User.update({}, {$inc: {popularity: 1}}).then(() => {
+            User.findOne({firstName: 'Justin'}).then(record => {
+                assert(record.popularity === 1);
                 done();
             });
         });
