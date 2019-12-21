@@ -3,7 +3,8 @@ const Schema = mongoose.Schema;
 
 const UserSchema = new Schema({
     firstName: String,
-    lastName: String
+    lastName: String,
+    popularity: Number
 });
 
 module.exports = mongoose.model('User', UserSchema);
