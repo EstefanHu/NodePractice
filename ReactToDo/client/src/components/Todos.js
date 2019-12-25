@@ -1,12 +1,11 @@
 import React, {Component} from 'react';
+import TodoItem from './TodoItem';
 
 class Todos extends Component {
   render() {
-    return (
-      <div>
-        <h2>Todos</h2>
-      </div>
-    )
+    return this.props.todos.map((todo) => (
+      <TodoItem />
+    ));
   }
 }
 
