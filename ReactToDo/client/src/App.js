@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { Component } from 'react';
 import './App.css';
 
 import Todos from './components/Todos';
 
-function App() {
+class App extends Component {
   state = {
     todos: [
       {
@@ -14,7 +14,7 @@ function App() {
       {
         id: 2,
         title: 'Take out the dog',
-        completed: false
+        completed: true
       },
       {
         id: 3,
@@ -24,12 +24,14 @@ function App() {
     ]
   }
 
-  return (
-    <div className="App">
-      <h1>Hello</h1>
-      <Todos todos={this.state.todos} />
-    </div>
-  );
+  render() {
+    return (
+      <div className="App">
+        <h1>Hello</h1>
+        <Todos todos={this.state.todos} />
+      </div>
+    );
+  }
 }
 
 export default App;
