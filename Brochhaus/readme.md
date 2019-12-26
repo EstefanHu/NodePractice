@@ -1,1 +1,0 @@
-### From Martin Brochhaus' talk
