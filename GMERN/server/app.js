@@ -6,9 +6,9 @@ const graphqlHTTP = require('express-graphql');
 
 const db = {
   users: [
-    {id: '1', email: 'alex@gmail.com', name: 'Alex'},
-    {id: '2', email: 'max@gmail.com', name: 'Max'},
-    {id: '3', email: 'steve@gmail.com', name: 'Steve'},
+    {id: '1', email: 'alex@gmail.com', name: 'Alex', avatarUrl: 'https://gravatar.com/...'},
+    {id: '2', email: 'max@gmail.com', name: 'Max', avatarUrl: 'https://gravatar.com/...'},
+    {id: '3', email: 'steve@gmail.com', name: 'Steve', avatarUrl: 'https://gravatar.com/...'},
   ]
 }
 
