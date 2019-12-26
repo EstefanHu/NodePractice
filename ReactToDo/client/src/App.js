@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import './App.css';
 import uuid from 'uuid';
-
 import {BrowserRouter as Router, Route} from 'react-router-dom';
+import axios from 'axios';
 
 import Header from './components/layout';
 import Todos from './components/Todos';
@@ -12,23 +12,14 @@ import About from './components/pages/about';
 
 class App extends Component {
   state = {
-    todos: [
-      {
-        id: uuid.v4(),
-        title: 'Take out the trash',
-        completed: false
-      },
-      {
-        id: uuid.v4(),
-        title: 'Take out the dog',
-        completed: false
-      },
-      {
-        id: uuid.v4(),
-        title: 'Take out the hitman',
-        completed: false
-      }
-    ]
+    todos: []
+  }
+
+  componentDidMount() {
+    axios.get('https://jsonplaceholder.typicode.com/todos?_limit=10')
+      .then(res => {
+        this.setState({todos: res.data})
+      })
   }
 
   markComplete = (id) => {
