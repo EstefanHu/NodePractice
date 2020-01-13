@@ -15,8 +15,8 @@ app.use('/graphql', graphqlHTTP({
     graphiql: true
 }));
 
-const uri = process.env.DB_CONNECTION;
-mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true });
+const DB_CONNECTION = 'GraphTesting';
+mongoose.connect(`mongodb://localhost/${DB_CONNECTION}`, { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true, useFindAndModify: false });
 
 const connection = mongoose.connection;
 connection.once('open', () => {
