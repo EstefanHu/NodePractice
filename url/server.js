@@ -15,9 +15,9 @@ mongoose.connect('mongodb://localhost/urlShortener', {
 app.set('view engine', 'ejs');
 
 app.get('/', async (req, res) => {
-	const shortUrl = await ShortUrl.find()
+	const shortUrls = await ShortUrl.find()
 	res.render('index', {
-		shortUrl: shortUrl
+		shortUrls: shortUrls
 	});
 });
 
