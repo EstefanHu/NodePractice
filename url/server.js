@@ -36,7 +36,7 @@ app.get('/:shorturl', async (req, res) => {
 
 	if (shortUrl === null) return res.sendStatus(404);
 
-	shortUrl.click++;
+	shortUrl.clicks++;
 	shortUrl.save();
 	res.redirect(shortUrl.full);
 });
